@@ -2,7 +2,7 @@ import React from 'react'
 
 import { useState } from "react";
 import GetGithub from './GetGithub';
-import GetLinkedIn from './GetLinkedIn';
+
 
 const GetProfile = () => {
 
@@ -25,7 +25,7 @@ const GetProfile = () => {
         </option>
 
         <option value="github">GitHub</option>
-        <option value="linkedin">LinkedIn</option>
+     
       </select>
 
       {/* Conditional Rendering */}
@@ -36,7 +36,6 @@ const GetProfile = () => {
       )}
 
       {selected === "github" && <GetGithub />}
-      {selected === "linkedin" && <GetLinkedIn />}
     </div>
 
 
