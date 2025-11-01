@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addUser } from "../Redux-Toolkit/userSlice";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -6,6 +8,9 @@ const Login = () => {
     password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setFormData({
@@ -16,7 +21,30 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Login details:", formData);
+
+    setError("");
+
+    // Simple validations
+    if (!formData.emailOrUsername || !formData.password) {
+      setError("Please fill in all fields.");
+      return;
+    }
+
+    // Email pattern check (optional)
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(formData.emailOrUsername)) {
+      setError("Invalid email format!");
+      return;
+    }
+
+    // Example: if credentials are correct
+    if (formData.emailOrUsername === "admin@gmail.com" && formData.password === "12345") {
+      dispatch(addUser(formData));
+      setError("");
+    } else {
+      setError("Invalid username or password!");
+    }
+
   };
 
   return (
@@ -101,6 +129,7 @@ const Login = () => {
           </div>
 
           {/* Submit Button */}
+          {error && <p className="text-red-500 text-sm font-medium">{error}</p>}
           <button className="btn btn-primary w-full mt-2">Login</button>
         </form>
 
