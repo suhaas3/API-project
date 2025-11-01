@@ -3,7 +3,7 @@ import Body from "./Components/Body";
 import "./index.css";
 import GetProfile from "./Components/GetProfile";
 import Contact from "./Components/Contact";
-import Home from "./Components/Home";
+import Login from "./Components/Login";
 
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
     <BrowserRouter basename="/">
       <Routes>
         <Route path="/" element={<Body/>}> 
-        <Route path="/" element={<Home/>}/>
+        <Route path="/" element={<Login/>}/>
         <Route path="/getprofile" element={<GetProfile/>}/>
         <Route path="/contact" element={<Contact/>}/>
         </Route>
